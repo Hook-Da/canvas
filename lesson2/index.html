@@ -1,0 +1,90 @@
+<html>
+
+<head>
+    <style type="text/css">
+        body {
+            margin: 40px;
+            background: #666;
+        }
+
+        #my_canvas {
+            background: #fff;
+            border: #000 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="my_canvas" width="600" height="600"></canvas>
+    <script>
+        var leather = new Image();
+        leather.src = 'leather.jpg';
+        function draw() {
+            const ctx = document.getElementById('my_canvas').getContext('2d'); /* back reference ctx.canvas */
+            /**
+            * for example ctx.canvas.id === my_canvas, ctx.canvas.width, ctx.canvas.height
+             */
+            /* ctx.fillRect(x,y,w,h); */
+            /* 
+            * ctx.fillStyle = color || hex || rgba() || gradient || pattern
+             */
+            /* 
+            * var gradient = ctx.createLinearGradient(x0, y0, x1, y1)
+             */
+             var g1 = ctx.createLinearGradient(0,0,0,200); //vertical
+             //var g1 = ctx.createLinearGradient(0, 0, 0, 200); //horizontal
+             //var g1 = ctx.createLinearGradient(0, 0, 200, 200); // diagonal
+            g1.addColorStop(0,'lime');
+            g1.addColorStop(.5,'cyan');
+            g1.addColorStop(1, 'black');
+
+             //ctx.fillStyle = 'rgba(10,234,34,0.4)';
+             ctx.fillStyle = g1;
+             ctx.strokeStyle = 'rgba(32,34,54,0.6)';
+             ctx.lineWidth = 5;
+             ctx.fillRect(0,0,200,200);
+             ctx.strokeRect(20,34,54,65);
+
+             /* var gradient2 = ctx.createRadialGradient(x0,y0,r0,x1,y1,r1); */
+             var gradient2 = ctx.createRadialGradient(300, 250, 30, 350, 350, 300);
+                gradient2.addColorStop(0,'lime');
+                gradient2.addColorStop(0.3, 'green');
+                gradient2.addColorStop(0.5, 'black');
+                gradient2.addColorStop(1, 'yellow');
+                ctx.fillStyle = gradient2;
+            ctx.fillRect(200,200,300,300);
+
+            console.log('%c===','background:lime',leather);
+            var pattern = ctx.createPattern(leather,'repeat');
+            ctx.fillStyle = pattern;
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = g1;
+            ctx.strokeRect(40, 300, 140, 400);
+            ctx.fillRect(40,300,200,200);
+            //ctx.fillStyle = pattern;
+            ctx.fill();
+            let g3 = ctx.createRadialGradient(350,60,20,350,60,100);
+            g3.addColorStop(0,'lime');
+            g3.addColorStop(0.3,'lightblue');
+            g3.addColorStop(0.6,'yellow');
+            g3.addColorStop(1,'violet');
+
+            ctx.fillRect(200,10,100,100);
+            ctx.lineWidth = 10;
+            ctx.strokeStyle = pattern;
+            ctx.strokeRect(300,10,100,100);
+
+            ctx.fillStyle = g3;
+            ctx.fillRect(300,10,100,100);
+            ctx.fill();
+        }
+        draw();
+        let canvas = document.getElementById('my_canvas');
+        canvas.addEventListener('click',(event)=>{
+            console.log(event.clientX, event.clientY);
+            console.log(event);
+        })
+    </script>
+</body>
+
+</html>

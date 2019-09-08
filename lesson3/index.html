@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <style type="text/css">
+        body {
+            margin: 40px;
+            background: #666;
+        }
+
+        #my_canvas {
+            background: #fff;
+            border: #000 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="my_canvas" width="800" height="600"></canvas>
+    <script>
+        function draw() {
+            const ctx = document.getElementById('my_canvas').getContext('2d'); /* back reference ctx.canvas */
+           
+            ctx.beginPath();
+            ctx.moveTo(150, 150);
+            ctx.lineTo(320,450);
+            ctx.lineTo(440,50);
+
+            ctx.lineWidth = 20;
+            ctx.lineCap = 'butt';//round,butt,square
+            ctx.lineJoin = 'miter'; // bevel, round, miter
+            ctx.miterLimit = 1;
+            ctx.setLineDash([20,10,30]);
+            ctx.lineDashOffset = 10;
+
+            ctx.stroke();
+            //ctx.fill();
+        }
+        draw();
+    </script>
+</body>
+
+</html>

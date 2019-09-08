@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <style type="text/css">
+        body {
+            margin: 40px;
+            background: #666;
+        }
+
+        #my_canvas {
+            background: #fff;
+            border: #000 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="my_canvas" width="800" height="600"></canvas>
+    <script>
+        function draw() {
+            const ctx = document.getElementById('my_canvas').getContext('2d'); /* back reference ctx.canvas */
+            ctx.beginPath();//Resets the current default path
+            ctx.moveTo(10,10); //Creates a new subpath with the given point
+            ctx.lineTo(100,10);
+            ctx.lineTo(50,60);
+            ctx.closePath();
+            ctx.stroke();
+            
+            colored(ctx.isPointInPath(50,20));
+            //ctx.clip();
+            ctx.rect(50,50,100,100);
+            ctx.rect(150,50,100,100);
+            ctx.stroke();
+
+            //ctx.arc(x,y,radius,startAngle,endAngle,antiClockwise);
+            ctx.beginPath();
+            ctx.arc(400, 200, 40, 6.28, 4.71, true);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(480, 200, 40, 6.28, 4.71, false);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(520, 200, 40, 6.28, Math.PI*0.5, true);
+            ctx.stroke();
+
+            //ctx.arcTo(x1,y1,x2,y2,radius);
+            ctx.beginPath();
+            ctx.moveTo(500,60);
+            ctx.lineTo(550,60);
+            ctx.arcTo(600,60,600,110,50);
+            ctx.stroke();
+
+            //ctx.quadraticCurveTo(cpx,cpy,x,y)
+            ctx.beginPath();
+            ctx.moveTo(450,80);
+            ctx.lineTo(480,80);
+            ctx.quadraticCurveTo(530,50,560,130);
+            ctx.stroke();
+
+            //ctx.bezierCurveTo(cp1x, cp1y, cp2x, cp2y, x, y);
+            ctx.beginPath();
+            ctx.moveTo(500,140);
+            ctx.lineTo(550,140);
+            ctx.bezierCurveTo(560,100,580,190,590,170)
+            ctx.stroke();
+
+        }
+        draw();
+        function colored(elem){
+            console.log('%c===','background:lime',elem);
+        }
+    </script>
+</body>
+
+</html>
