@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <style type="text/css">
+            body{
+                margin:40px;
+                background:#666;
+            }
+            #my_canvas{
+                background:#fff;
+                border:#000 1px solid;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="my_canvas" width="800" height="800"></canvas>
+        <script>
+            function draw(){
+                const ctx = document.getElementById('my_canvas').getContext('2d'); /* back reference ctx.canvas */
+                const img = new Image();
+                img.src = 'hulk.jpg';
+                console.log(img);
+                //document.body.appendChild(img);
+                //ctx.drawImage(source image, x, y)
+                //ctx.drawImage(img, 10, 10);
+                ctx.drawImage(img,320,0,160,120,0,0,160,120);
+                ctx.drawImage(img,0,240,160,120,160,0,160,120);
+                ctx.drawImage(img,320,240,160,120,320,0,160,120);
+                ctx.drawImage(img,160,240,160,120,0,120,160,120);
+                ctx.drawImage(img,0,120,160,120,160,120,160,120);
+                ctx.drawImage(img,160,0,160,120,320,240,160,120);
+                ctx.drawImage(img,0,0,160,120,0,240,160,120);
+                ctx.drawImage(img,320,240,160,160,240,0,160,120);
+                ctx.drawImage(img,160,120,160,120,320,240,160,120);
+
+                console.log('%c== img width','background:lime',img.width);
+                console.log('%c== img.height','background:red',img.height);
+
+
+                //ctx.drawImage(img,sx,sy,swidth.sheight,x,y,width,height)
+                /*
+                *   sx	Optional. The x coordinate where to start clipping
+                *   sy	Optional. The y coordinate where to start clipping
+                *   swidth	Optional. The width of the clipped image
+                *   sheight	Optional. The height of the clipped image
+                *   x	The x coordinate where to place the image on the canvas
+                *   y	The y coordinate where to place the image on the canvas
+                *   width	Optional. The width of the image to use (stretch or reduce the image)
+                *   height	Optional. The height of the image to use (stretch or reduce the image)
+                */
+                ctx.drawImage(img,30,30,450,400,10,400,225,200);
+            }
+            draw();
+        </script>
+    </body>
+</html>
